@@ -1,8 +1,10 @@
 # Programmed by: Mubashir Ahmed OR known as Mubashir78 on Github
+# https://www.github.com/Mubashir78
+
+import math
+from fractions import Fraction
 from sys import stdout
 from time import sleep
-from fractions import Fraction
-import math
 
 class color:
     PURPLE = '\033[95m'
@@ -27,7 +29,7 @@ def print_slow(str):
     for letter in str:
         stdout.write(letter)
         stdout.flush()
-        sleep(0.03)
+        sleep(0.02)
     print(" ")
 
 
@@ -45,6 +47,8 @@ def selection_of_formulae():
     print_slow(color.ITALIC+"3- Third Equation of Motion (2aS = Vf² - Vi²)"+color.END)
     sleep(1)
 
+    return choose_of_formula()
+
     
 def choose_of_formula():
     print(" ")
@@ -52,41 +56,35 @@ def choose_of_formula():
     
     if choice_of_formula == "1":
         startup("First", "Vf", "Vi", "a", "t")
-        main_1()
+        return main_1()
     
     elif choice_of_formula == "2":
         startup("Second", "S", "Vi", "t", "a")
-        main_2()
+        return main_2()
     
     elif choice_of_formula == "3":
         startup("Third", "a", "S", "Vf", "Vi")
-        main_3()
+        return main_3()
     
     elif choice_of_formula == "exit":
-        exit_code()
+        return exit_code()
 
     else:
         print_slow(color.BOLD+color.UNDERLINE+color.RED+"Invalid input. Please type 1 OR 2 OR 3."+color.END)
         sleep(2)
-        choose_of_formula()
+        return choose_of_formula()
 
 def exit_code():
     print(" ")
     print_slow(color.BOLD+"The script will now exit. Goodbye!"+color.END)
     sleep(0.5)
     
-    print(" ")
-    print_slow(color.GREEN+color.BOLD+"What do you think of my script by the way?"+color.END)
-    sleep(0.8)
-    
-    print_slow(color.GREEN+color.BOLD+"Let me know!"+color.END)
-    sleep(0.5)
-    
-    print_slow("   ==========================================")
-    print_slow(color.ITALIC+"         Programmed by: Mubashir Ahmed"+color.END)
-    print_slow("   ==========================================")
+    print_slow("   ===================================")
+    print_slow(color.ITALIC+"\tProgrammed by: Mubashir78"+color.END)
+    print_slow("   ===================================")
     sleep(0.3)
-    exit()
+    
+    return
 
 # There are separate main codes for each of the Equation of Motion
 
@@ -122,14 +120,14 @@ def main_1():
     number_of_strings = list_of_types.count(str)
 
     if number_of_strings == 2 or number_of_strings == 3 or number_of_strings == 4:
-        print_slow("%s" % Error.er_code_more_than_1_str)
+        print_slow(Error.er_code_more_than_1_str)
         sleep(0.8)
-        restart_code(main_1)
+        return main_1()
 
     elif number_of_strings == 0:
-        print_slow("%s" % Error.er_code_no_str)
+        print_slow(Error.er_code_no_str)
         sleep(0.8)
-        restart_code(main_1)
+        return main_1()
 
     # Separate formula depending upon which value is unknown/string
     elif type(variables[0]) == str:
@@ -139,7 +137,7 @@ def main_1():
         lim_found_Vf = round(found_Vf,3)
         sleep(1)
         print_slow(color.GREEN+color.UNDERLINE+f"The value of 'Vf' is: {float(lim_found_Vf)} m/s"+color.END)
-        restart_code(main_1)
+        return restart_code(main_1)
 
     elif type(variables[1]) == str:
         print(" ")
@@ -148,7 +146,7 @@ def main_1():
         lim_found_Vi = round(found_Vi,3)
         sleep(1)
         print_slow(color.GREEN+color.UNDERLINE+f"The value of 'Vi' is: {float(lim_found_Vi)} m/s"+color.END)
-        restart_code(main_1)
+        return restart_code(main_1)
 
     elif type(variables[2]) == str:
         print(" ")
@@ -157,7 +155,7 @@ def main_1():
         lim_found_a = round(found_a,3)
         sleep(1)
         print_slow(color.GREEN+color.UNDERLINE+f"The value of 'a' is: {float(lim_found_a)} m/s²"+color.END)
-        restart_code(main_1)
+        return restart_code(main_1)
 
     elif type(variables[3]) == str:
         print(" ")
@@ -166,7 +164,7 @@ def main_1():
         lim_found_t = round(found_t,3)
         sleep(1)
         print_slow(color.GREEN+color.UNDERLINE+f"The value of 't' is: {float(lim_found_t)} sec"+color.END)
-        restart_code(main_1)
+        return restart_code(main_1)
 
 def main_2():
     print(" ")
@@ -193,14 +191,14 @@ def main_2():
     del i
 
     if number_of_strings == 2 or number_of_strings == 3 or number_of_strings == 4:
-        print_slow("%s" % Error.er_code_more_than_1_str)
+        print_slow(Error.er_code_more_than_1_str)
         sleep(0.8)
-        restart_code(main_2)
+        return main_2()
     
     elif number_of_strings == 0:
-        print_slow("%s" % Error.er_code_no_str)
+        print_slow(Error.er_code_no_str)
         sleep(0.8)
-        restart_code(main_2)
+        return main_2()
     
     elif type(variables[0]) == str:
         print(" ")
@@ -209,7 +207,7 @@ def main_2():
         lim_found_S = round(found_S,3)
         sleep(1)
         print_slow(color.GREEN+color.UNDERLINE+f"The value of 'S' is: {float(lim_found_S)} m"+color.END)
-        restart_code(main_2)
+        return restart_code(main_2)
 
     elif type(variables[1]) == str:
         print(" ")
@@ -218,7 +216,7 @@ def main_2():
         lim_found_Vi = round(found_Vi,3)
         sleep(1)
         print_slow(color.GREEN+color.UNDERLINE+f"The value of 'Vi' is: {float(lim_found_Vi)} m/s"+color.END)
-        restart_code(main_2)
+        return restart_code(main_2)
 
     elif type(variables[2]) == str:
         print(" ")
@@ -227,7 +225,7 @@ def main_2():
         lim_found_t = round(found_t,3)
         sleep(1)
         print_slow(color.GREEN+color.UNDERLINE+f"The value of 't' is: {float(lim_found_t)} sec"+color.END)
-        restart_code(main_2)
+        return restart_code(main_2)
 
     elif type(variables[3]) == str:
         print(" ")
@@ -236,7 +234,7 @@ def main_2():
         lim_found_a = round(found_a,3)
         sleep(1)
         print_slow(color.GREEN+color.UNDERLINE+f"The value of 'a' is: {float(lim_found_a)} m/s²"+color.END)
-        restart_code(main_2)
+        return restart_code(main_2)
 
 def main_3():
     print(" ")
@@ -263,14 +261,14 @@ def main_3():
     del i
 
     if number_of_strings == 2 or number_of_strings == 3 or number_of_strings == 4:
-        print_slow("%s" % Error.er_code_more_than_1_str)
+        print_slow(Error.er_code_more_than_1_str)
         sleep(0.8)
-        restart_code(main_3)
+        return main_3()
     
     elif number_of_strings == 0:
-        print_slow("%s" % Error.er_code_no_str)
+        print_slow(Error.er_code_no_str)
         sleep(0.8)
-        restart_code(main_3)
+        return main_3()
 
     elif type(variables[0]) == str:
         print(" ")
@@ -279,7 +277,7 @@ def main_3():
         lim_found_a = round(found_a,5)
         sleep(1)
         print_slow(color.GREEN+color.UNDERLINE+f"The value of 'a' is: {float(lim_found_a)} m/s²"+color.END)
-        restart_code(main_3)
+        return restart_code(main_3)
 
     elif type(variables[1]) == str:
         print(" ")
@@ -288,7 +286,7 @@ def main_3():
         lim_found_S = round(found_S,5)
         sleep(1)
         print_slow(color.GREEN+color.UNDERLINE+f"The value of 'S' is: {float(lim_found_S)} m"+color.END)
-        restart_code(main_3)
+        return restart_code(main_3)
 
     elif type(variables[2]) == str:
         print(" ")
@@ -297,7 +295,7 @@ def main_3():
         lim_found_Vf = round(found_Vf,5)
         sleep(1)
         print_slow(color.GREEN+color.UNDERLINE+f"The value of 'Vf' is: {float(lim_found_Vf)} m/s"+color.END)
-        restart_code(main_3)
+        return restart_code(main_3)
 
     elif type(variables[3]) == str:
         print(" ")
@@ -306,7 +304,7 @@ def main_3():
         lim_found_Vi = round(found_Vi,5)
         sleep(1)
         print_slow(color.GREEN+color.UNDERLINE+f"The value of 'Vi' is: {float(lim_found_Vi)} m/s"+color.END)
-        restart_code(main_3)
+        return restart_code(main_3)
 
 def restart_code(main_no):
     while True:
@@ -318,25 +316,25 @@ def restart_code(main_no):
             print_slow(" ")
             print_slow(color.ITALIC+"Restarting..."+color.END)
             sleep(0.5)
-            main_no()
+            return main_no()
         
         elif restart == "go back":
             print(" ")
             print_slow(color.ITALIC+"Reverting back...")
             sleep(0.5)
-            choose_of_formula()
+            return choose_of_formula()
         
         elif restart == "exit":
-            exit_code()
+            return exit_code()
         
         else:
-            print_slow("%s" % Error.er_code_inv_inp)
+            print_slow(Error.er_code_inv_inp)
 
 def startup(num, var_1, var_2, var_3, var_4):
     print(" ")
     print("   =====================================================")
     print(color.ITALIC+f"     Value Calculator For '{num} Equation Of Motion'")
-    print("              Programmed by: Mubashir Ahmed"+color.END)
+    print("\t\tProgrammed by: Mubashir78"+color.END)
     print("   =====================================================")
     sleep(1)
     
@@ -349,5 +347,6 @@ def startup(num, var_1, var_2, var_3, var_4):
     sleep(1)
 
 selection_of_formulae()
-choose_of_formula()
+
 # Programmed by: Mubashir Ahmed OR known as Mubashir78 on Github
+# https://www.github.com/Mubashir78
